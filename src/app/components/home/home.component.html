@@ -88,4 +88,14 @@
       </div>
     </div>
   </section>
+
+  <section class="alert-section" *ngIf="showMessage">
+    <div class="alert alert-success" role="alert" *ngIf="success">
+      A simple success alert—check it out!
+    </div>
+
+    <div class="alert alert-danger" role="alert" *ngIf="!success">
+      A simple danger alert—check it out!
+    </div>
+  </section>
 </div>

@@ -37,3 +37,14 @@
 .lightTheme {
   background-color: white !important;
 }
+.alert-section {
+  padding-top: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  .alert {
+    width: 50vw;
+  }
+}

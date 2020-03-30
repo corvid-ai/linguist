@@ -15,6 +15,8 @@ export class HomeComponent implements OnInit {
   darkTheme: boolean;
   // timeOfDay: string;
   data: Data;
+  showMessage: boolean;
+  success: boolean;
 
   constructor(private readonly api: ApiService) {
     this.data = new Data();
@@ -32,8 +34,24 @@ export class HomeComponent implements OnInit {
   async submit(f) {
     this.api.saveDoc(this.data).subscribe(res => {
       const response: any = res;
-      console.log(res)
-      response.status === 200 ? "" : "";
+
+      this.showMessage = true;
+
+      if (response.status === 200) {
+        this.success = true;
+        this.data = new Data();
+
+        setTimeout(() => {
+          this.showMessage = false;
+        }, 3000);
+      } else {
+        this.success = false;
+        this.data = new Data();
+
+        setTimeout(() => {
+          this.showMessage = false;
+        }, 3000);
+      }
     });
   }
 }

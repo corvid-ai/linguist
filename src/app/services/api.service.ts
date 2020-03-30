@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
   providedIn: "root"
 })
 export class ApiService {
-  baseUrl = "http://localhost:3000/linguist/";
+  baseUrl = "https://linguist.netlify.com/linguist/";
 
   private httpHeaders = new HttpHeaders()
     .set("Content-Type", "application/json")
