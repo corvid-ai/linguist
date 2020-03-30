@@ -1,0 +1,39 @@
+.main {
+  position: relative;
+  height: 100vh;
+
+  .section-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card {
+    width: 80vw;
+  }
+
+  .jumbotron {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+  }
+}
+
+.darkTheme {
+  background-color: black !important;
+  .jumbotron {
+    background-color: black !important;
+  }
+  .collapse-card {
+    background-color: black !important;
+    color: white !important;
+  }
+  app-navbar {
+    background-color: black !important;
+    color: white !important;
+  }
+}
+
+.lightTheme {
+  background-color: white !important;
+}

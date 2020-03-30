@@ -1,0 +1,91 @@
+<div class="main" [ngClass]="{ darkTheme: darkTheme, lightTheme: !darkTheme }">
+  <app-navbar></app-navbar>
+
+  <section class="section-1">
+    <div class="jumbotron">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="display-4">Welcome to Linguist</h1>
+          <p class="lead">
+            A
+            <a href="Corvid-AI" target="_blank" href="https://corvid.ai"
+              >Corvid-AI</a
+            >
+            Research Project
+          </p>
+          <hr class="my-4" />
+          <p>
+            <button
+              class="btn btn-primary"
+              type="button"
+              data-toggle="collapse"
+              data-target="#collapseExample"
+              aria-expanded="false"
+              aria-controls="collapseExample"
+            >
+              Read More
+            </button>
+          </p>
+          <div class="collapse" id="collapseExample">
+            <div
+              class="card card-body collapse-card"
+              style="width: 100% !important;"
+            >
+              Anim pariatur cliche reprehenderit, enim eiusmod high life
+              accusamus terry richardson ad squid. Nihil anim keffiyeh
+              helvetica, craft beer labore wes anderson cred nesciunt sapiente
+              ea proident.
+              <hr class="my-4" />
+              <button class="btn btn-link">GitHub page</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-2">
+    <div class="card">
+      <div class="card-body">
+        <form #f="ngForm" (ngSubmit)="submit(f)">
+          <div class="form-row">
+            <div class="form-group col">
+              <label for="inputCity">English</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputCity"
+                name="english"
+                [(ngModel)]="data.English"
+              />
+            </div>
+            <div class="form-group col-md-2">
+              <label for="inputState">to</label>
+              <select
+                id="inputState"
+                class="form-control"
+                [(ngModel)]="data.localLanguage"
+                name="localLanguage"
+              >
+                <option selected>Local Language</option>
+                <option value="Ashanti Twi">Ashanti Twi</option>
+                <option value="Akuapim Twi">Akuapim Twi</option>
+              </select>
+            </div>
+            <div class="form-group col">
+              <label for="inputZip">*{{ data.localLanguage }}*</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputZip"
+                name="data.localLanguage"
+                [(ngModel)]="data.translation"
+              />
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
