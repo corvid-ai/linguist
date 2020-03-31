@@ -1,6 +1,9 @@
 <nav
-  class="navbar navbar-expand-lg navbar-light bg-light"
-  [ngClass]="{ darkTheme: darkTheme, lightTheme: !darkTheme }"
+  class="navbar navbar-expand-lg"
+  [ngClass]="{
+    'navbar-light bg-light': !darkTheme,
+    'navbar-dark bg-dark': darkTheme
+  }"
 >
   <a class="navbar-brand">Linguist</a>
   <button
