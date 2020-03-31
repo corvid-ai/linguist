@@ -5,7 +5,7 @@ import { Injectable } from "@angular/core";
   providedIn: "root"
 })
 export class ApiService {
-  baseUrl = "https://linguist.herokuapp.com/linguist";
+  baseUrl = "https://linguist.herokuapp.com";
 
   constructor(private http: HttpClient) {}
 
