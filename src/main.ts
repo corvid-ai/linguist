@@ -31,6 +31,7 @@ async function bootstrap() {
       'Accept',
       'X-Access-Token',
       'XMLHttpRequest',
+      'Access-Control-Allow-Origin',
     ],
   });
 
@@ -42,6 +43,7 @@ async function bootstrap() {
       'Accept',
       'X-Access-Token',
       'XMLHttpRequest',
+      'Access-Control-Allow-Origin',
     ],
     credentials: true,
     methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
