@@ -19,9 +19,9 @@ export class AppService {
     const sheet = doc.sheetsByIndex[0]; // or use doc.sheetsById[id]
     try {
       await sheet.addRow(data);
-      throw new HttpException('Success', 200);
+      return new HttpException('Success', 200);
     } catch (err) {
-      throw new BadRequestException(err);
+      return new BadRequestException(err);
     }
   }
 }

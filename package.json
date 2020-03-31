@@ -1,6 +1,10 @@
 {
   "name": "linguist-api",
   "version": "0.0.1",
+  "engines": {
+    "node": "12.16.1",
+    "npm": "6.14.2"
+  },
   "description": "",
   "author": "",
   "license": "MIT",
