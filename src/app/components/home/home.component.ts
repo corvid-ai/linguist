@@ -17,12 +17,16 @@ export class HomeComponent implements OnInit {
   data: Data;
   showMessage: boolean;
   success: boolean;
+  spinner: boolean;
 
   constructor(private readonly api: ApiService) {
     this.data = new Data();
   }
 
   ngOnInit(): void {
+    this.spinner = false;
+    this.showMessage = false;
+
     this.darkTheme = false;
     if (moment().get("hour") > 17 || moment().get("hour") < 6) {
       this.darkTheme = true;
@@ -32,26 +36,28 @@ export class HomeComponent implements OnInit {
   }
 
   async submit(f) {
-    this.api.saveDoc(this.data).subscribe(res => {
-      const response: any = res;
+    this.spinner = true;
+    this.api.saveDoc(this.data).subscribe(
+      res => {
+        this.showMessage = true;
 
-      this.showMessage = true;
-
-      if (response.status === 200) {
         this.success = true;
+        this.spinner = false;
         this.data = new Data();
 
         setTimeout(() => {
           this.showMessage = false;
         }, 3000);
-      } else {
+      },
+      error => {
         this.success = false;
+        this.spinner = false;
         this.data = new Data();
 
         setTimeout(() => {
           this.showMessage = false;
         }, 3000);
       }
-    });
+    );
   }
 }

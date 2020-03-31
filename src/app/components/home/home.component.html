@@ -83,7 +83,13 @@
               />
             </div>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary" *ngIf="!spinner">
+            Submit
+          </button>
+
+          <div class="spinner-border" role="status" *ngIf="spinner">
+            <span class="sr-only">Loading...</span>
+          </div>
         </form>
       </div>
     </div>
@@ -91,11 +97,11 @@
 
   <section class="alert-section" *ngIf="showMessage">
     <div class="alert alert-success" role="alert" *ngIf="success">
-      A simple success alert—check it out!
+      Thank you! Your data has successfully been submited
     </div>
 
     <div class="alert alert-danger" role="alert" *ngIf="!success">
-      A simple danger alert—check it out!
+      Sorry, an error occured. Please try again.
     </div>
   </section>
 </div>
