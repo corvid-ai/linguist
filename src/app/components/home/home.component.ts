@@ -37,6 +37,11 @@ export class HomeComponent implements OnInit {
 
   async submit(f) {
     this.spinner = true;
+    let { English, localLanguage, translation } = this.data;
+    this.data.English = English.toLowerCase();
+    this.data.localLanguage = localLanguage.toLowerCase();
+    this.data.translation = translation.toLowerCase();
+
     this.api.saveDoc(this.data).subscribe(
       res => {
         this.showMessage = true;
