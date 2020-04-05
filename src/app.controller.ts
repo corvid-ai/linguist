@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 import { DataDto } from './data.dto';
 
@@ -7,7 +7,12 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Post()
-  getHello(@Body() data: DataDto) {
+  postDoc(@Body() data: DataDto) {
     return this.appService.saveDocs(data);
+  }
+
+  @Get()
+  getDoc() {
+    return this.appService.getInfo();
   }
 }

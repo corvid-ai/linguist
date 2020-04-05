@@ -24,4 +24,22 @@ export class AppService {
       return new BadRequestException(err);
     }
   }
+
+  async getInfo() {
+    const doc = new GoogleSpreadsheet(
+      '1frwFx0ZLf6GakVwhvsa4SAgVGm5x9fbLPOXCHEyJFuk',
+    );
+    doc.useApiKey('AIzaSyA_Dlko2wsrIVryFRLkKGadPUXVkldn5pw');
+    await doc.useServiceAccountAuth(Keys);
+
+    await doc.loadInfo(); // loads document properties and worksheets
+    const sheet = doc.sheetsByIndex[0];
+    const rows: [] = await sheet.getRows();
+
+    try {
+      return new HttpException(rows.length.toString(), 200);
+    } catch (err) {
+      return new BadRequestException(err);
+    }
+  }
 }
