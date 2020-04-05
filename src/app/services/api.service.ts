@@ -12,4 +12,8 @@ export class ApiService {
   saveDoc(data) {
     return this.http.post(this.baseUrl, data);
   }
+
+  getInfo() {
+    return this.http.get(this.baseUrl);
+  }
 }

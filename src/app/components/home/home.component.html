@@ -1,5 +1,5 @@
 <div class="main" [ngClass]="{ darkTheme: darkTheme, lightTheme: !darkTheme }">
-  <app-navbar></app-navbar>
+  <app-navbar [rowCount]="rowCount"></app-navbar>
 
   <div class="section-1">
     <div class="container">
@@ -14,6 +14,21 @@
             Research Project
           </p>
           <hr class="my-4" />
+          <p class="lead">
+            <span>Linguist</span> is a data curation tool built to collect and
+            carefully annotate large textual data on local african languages.
+            Linguist is the data gathering phase of
+            <a
+              href="https://corvid-ai.github.io/Project-Nightingale/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Project Nightingale</a
+            >, an open source project aimed at building cutting-edge API’s that
+            will make textual data on Local Afrian Languages more accessible to
+            researchers, developers and the general public. You can help this
+            cause by simply translating a word, a sentence or phrase. Remember
+            every word counts.
+          </p>
           <p>
             <button
               class="btn btn-primary"
@@ -30,18 +45,22 @@
             <div class="card card-body collapse-card">
               <blockquote class="blockquote">
                 <footer class="blockquote-footer mb-1">
-                  Currently, only 13 languages of the estimated 1500 local
-                  African languages in Africa are supported by Google translate.
-                  This is mainly due to the lack of reliable, well documented
-                  and insufficient annotated datasets on local African
-                  languages.
+                  Currently, only 13 out of the estimated 1500 local African
+                  languages in Africa are supported by Google translate. This is
+                  mainly due to the lack of reliable, undocumented and
+                  insufficient annotated datasets on local African languages.
+                  However, our preliminary research findings indicate that there
+                  is a huge amount of textual data dispersed and floating across
+                  the web. Someone needs to do the heavy lifting of bringing all
+                  these datasets to a common location. This is where Project
+                  Nightingale comes in. <mark>Project Nightingale</mark> is an
+                  open source project aimed at providing a platform for
+                  gathering, documenting and annotating textual data on local
+                  African languages. Night seeks to leverage ML and NLP
+                  techniques to develop API’s, tools, packages, and
+                  applications. At Corvid.AI we believe in the democratization
+                  of AI to make tools, datasets, API’s accessible to everyone.
                 </footer>
-                <p class="mb-0 small">
-                  Project Nightingale is an open source project aimed at
-                  providing a platform for gathering, documenting and annotating
-                  textual data on local African languages.
-                </p>
-                <mark>Please contribute to make this a success.</mark>
               </blockquote>
 
               <hr class="my-4" />
@@ -59,7 +78,8 @@
 
       <div class="alert-section" *ngIf="showMessage">
         <div class="alert alert-success" role="alert" *ngIf="success">
-          Thank you! Your data has successfully been submited
+          Thank you! Your data has successfully been submited. You can add more
+          data to help keep Linguist running
         </div>
 
         <div class="alert alert-danger" role="alert" *ngIf="!success">
@@ -69,7 +89,14 @@
 
       <div class="card">
         <div class="card-body">
-          <form #f="ngForm" (ngSubmit)="submit(f)">
+          <form
+            #f="ngForm"
+            (ngSubmit)="submit(f)"
+            data-toggle="validator"
+            role="form"
+            novalidate
+            class="was-validated"
+          >
             <div class="form-row">
               <div class="form-group col">
                 <label for="inputCity">English</label>
@@ -79,15 +106,17 @@
                   id="inputCity"
                   name="english"
                   [(ngModel)]="data.English"
+                  required
                 />
               </div>
               <div class="form-group col-md-2">
                 <label for="inputState">to</label>
                 <select
                   id="inputState"
-                  class="form-control"
+                  class="custom-select browser-default"
                   [(ngModel)]="data.localLanguage"
                   name="localLanguage"
+                  required
                 >
                   <option selected disabled>Local Language</option>
                   <option value="Ashanti Twi">Ashanti Twi</option>
@@ -103,10 +132,54 @@
                   id="inputZip"
                   name="data.localLanguage"
                   [(ngModel)]="data.translation"
+                  required
                 />
               </div>
             </div>
-            <button type="submit" class="btn btn-primary" *ngIf="!spinner">
+            <div class="form-row">
+              <div class="form-group col">
+                <div class="custom-control custom-checkbox mb-3">
+                  <input
+                    type="checkbox"
+                    class="custom-control-input"
+                    id="customControlValidation1"
+                    [(ngModel)]="checkBox"
+                    name="checkBox"
+                    (change)="checkBoxStatus()"
+                  />
+                  <label
+                    class="custom-control-label"
+                    for="customControlValidation1"
+                    >If you want to stay in touch on progress of this project or
+                    interested in wining a range of products and vouchers,
+                    please provide your email.</label
+                  >
+                </div>
+                <label *ngIf="checkBox" for="email">Email</label>
+                <input
+                  *ngIf="checkBox"
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="data.email"
+                  [(ngModel)]="data.email"
+                  required
+                />
+              </div>
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              *ngIf="!spinner"
+              [disabled]="
+                !data.localLanguage ||
+                !data.English ||
+                !data.translation ||
+                (checkBox && !data.email)
+                  ? true
+                  : false
+              "
+            >
               Submit
             </button>
 
@@ -116,6 +189,40 @@
           </form>
         </div>
       </div>
+
+      <!-- <div class="card">
+        <div class="card-body">
+          <form
+            #f="ngForm"
+            (ngSubmit)="submit(f)"
+            data-toggle="validator"
+            role="form"
+            novalidate
+            class="was-validated"
+          >
+            <div class="form-row">
+              <div class="form-group col">
+                <label for="inputCity">English</label>
+                <input
+                  type="text"
+                  class="form-control browser-default"
+                  id="inputCity"
+                  name="english"
+                  [(ngModel)]="data.email"
+                  required
+                />
+              </div>
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="!data.email ? true : false"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div> -->
     </div>
   </div>
 </div>

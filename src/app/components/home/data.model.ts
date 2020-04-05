@@ -5,4 +5,5 @@ export class Data {
   localLanguage: string;
   translation: string;
   date = moment().format("MMMM Do YYYY, h:mm:ss a");
+  email: string;
 }

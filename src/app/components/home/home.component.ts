@@ -7,7 +7,7 @@ import { Data } from "./data.model";
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.scss"]
+  styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit {
   localLanguage: string;
@@ -15,9 +15,12 @@ export class HomeComponent implements OnInit {
   darkTheme: boolean;
   // timeOfDay: string;
   data: Data;
+  checkBox: boolean;
   showMessage: boolean;
   success: boolean;
   spinner: boolean;
+
+  rowCount: number;
 
   constructor(private readonly api: ApiService) {
     this.data = new Data();
@@ -35,34 +38,48 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  getInfo() {
+    this.api.getInfo().subscribe(async (res: any) => {
+      this.rowCount = await res.message;
+    });
+  }
+
   async submit(f) {
     this.spinner = true;
-    let { English, localLanguage, translation } = this.data;
+    let { English, localLanguage, translation, email } = this.data;
     this.data.English = English.toLowerCase();
-    this.data.localLanguage = localLanguage.toLowerCase();
+    this.data.localLanguage = localLanguage;
     this.data.translation = translation.toLowerCase();
+    !email
+      ? (this.data.email = "none")
+      : (this.data.email = email.toLowerCase());
 
     this.api.saveDoc(this.data).subscribe(
-      res => {
+      (res) => {
         this.showMessage = true;
 
         this.success = true;
         this.spinner = false;
         this.data = new Data();
 
+        this.getInfo();
+
         setTimeout(() => {
           this.showMessage = false;
-        }, 3000);
+        }, 5000);
       },
-      error => {
+      (error) => {
         this.success = false;
         this.spinner = false;
         this.data = new Data();
 
         setTimeout(() => {
           this.showMessage = false;
-        }, 3000);
+        }, 5000);
       }
     );
+  }
+  checkBoxStatus() {
+    !this.checkBox ? (this.data.email = null) : "";
   }
 }
