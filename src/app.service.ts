@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable @typescript-eslint/camelcase */
 import { BadRequestException, HttpException, Injectable } from '@nestjs/common';
 import { GoogleSpreadsheet } from 'google-spreadsheet';
 import { DataDto } from './data.dto';
@@ -37,7 +35,13 @@ export class AppService {
     const rows: [] = await sheet.getRows();
 
     try {
-      return new HttpException(rows.length.toString(), 200);
+      const words = [];
+      rows.forEach(res => {
+        const resp: any = res;
+        words.push(resp._rawData);
+      });
+
+      return new HttpException(words, 200);
     } catch (err) {
       return new BadRequestException(err);
     }
