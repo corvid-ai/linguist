@@ -76,7 +76,6 @@ export class TranslationsComponent implements OnInit, AfterContentInit {
 
   d3Preparation() {
     this.loading = false;
-    console.log(this.sizByValue);
     // set the dimensions and margins of the graph
     let margin = { top: 10, right: 10, bottom: 10, left: 10 };
     const width = 450 - margin.left - margin.right;
