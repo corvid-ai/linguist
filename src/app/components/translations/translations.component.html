@@ -1,23 +1,11 @@
-<div class="main">
-  <div class="container">
-    <table
-      class="table table-small"
-      [ngClass]="{ 'table-dark': darkTheme, 'table-striped': !darkTheme }"
-    >
-      <thead>
-        <tr>
-          <th scope="col">Words</th>
-          <th scope="col">Total Translations</th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let word of words">
-        <tr>
-          <td>{{ word.name }}</td>
-          <td>{{ word.count }}</td>
-        </tr>
-      </tbody>
-    </table>
+<div class="main" [ngClass]="{ main: !darkTheme, dMain: darkTheme }">
+  <app-navbar></app-navbar>
+  <div
+    [ngClass]="{
+      container: !darkTheme,
+      dContainer: darkTheme
+    }"
+  >
+    <span id="my_dataviz" class="my_dataviz"></span>
   </div>
-
-  <span id="my_dataviz" class="my_dataviz"></span>
 </div>

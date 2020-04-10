@@ -12,9 +12,10 @@ const moment = require("moment");
 export class TranslationsComponent implements OnInit, AfterContentInit {
   darkTheme: boolean;
 
-  svg: d3;
+  svg: any;
   layout: any;
   tester: HTMLElement;
+  prepare: any;
 
   response: any;
   words: DataStruc[];
@@ -29,7 +30,6 @@ export class TranslationsComponent implements OnInit, AfterContentInit {
     } else {
       this.darkTheme = false;
     }
-    this.generateData();
   }
 
   ngAfterContentInit() {
@@ -37,6 +37,7 @@ export class TranslationsComponent implements OnInit, AfterContentInit {
       "my_dataviz"
     ) as HTMLElement;
     this.tester = element;
+    this.generateData();
   }
 
   generateData() {
@@ -50,7 +51,7 @@ export class TranslationsComponent implements OnInit, AfterContentInit {
         this.words.push(target);
       });
 
-      if (this.words.length > 0) {
+      if (this.words.length > 1) {
         this.chartNum = [];
         this.chartText = [];
         this.words.filter((w) => {
@@ -99,12 +100,12 @@ export class TranslationsComponent implements OnInit, AfterContentInit {
       )
       .padding(10)
       .fontSize(60)
-      .on("end", this.draw);
+      .on("end", (e) => this.drawCloud(e));
+
     this.layout.start();
   }
 
-  draw(words) {
-    // console.log(this.svg);
+  drawCloud(words) {
     this.svg
       .append("g")
       .attr(
@@ -119,16 +120,13 @@ export class TranslationsComponent implements OnInit, AfterContentInit {
       .data(words)
       .enter()
       .append("text")
-      .style("font-size", function (d) {
-        return d.size + "px";
-      })
+      .style("font-size", (d) => d.size + "px")
       .attr("text-anchor", "middle")
-      .attr("transform", function (d) {
-        return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
-      })
-      .text(function (d) {
-        return d.text;
-      });
+      .attr(
+        "transform",
+        (d) => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")"
+      )
+      .text((d) => d.text);
   }
 }
 
