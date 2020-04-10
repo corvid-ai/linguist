@@ -20,8 +20,7 @@ export class TranslationsComponent implements OnInit, AfterContentInit {
 
   response: any;
   words: DataStruc[];
-  chartNum: any;
-  chartText: any;
+  sizByValue: any;
   constructor(private readonly api: ApiService) {}
 
   ngOnInit() {
@@ -54,11 +53,9 @@ export class TranslationsComponent implements OnInit, AfterContentInit {
       });
 
       if (this.words.length > 1) {
-        this.chartNum = [];
-        this.chartText = [];
+        this.sizByValue = [];
         this.words.filter((w) => {
-          this.chartNum.push(w.count);
-          this.chartText.push(w.name);
+          this.sizByValue.push({ word: w.name, size: w.count });
         });
         this.d3Preparation();
       }
@@ -79,6 +76,7 @@ export class TranslationsComponent implements OnInit, AfterContentInit {
 
   d3Preparation() {
     this.loading = false;
+    console.log(this.sizByValue);
     // set the dimensions and margins of the graph
     let margin = { top: 10, right: 10, bottom: 10, left: 10 };
     const width = 450 - margin.left - margin.right;
@@ -97,11 +95,12 @@ export class TranslationsComponent implements OnInit, AfterContentInit {
     this.layout = Layout()
       .size([width, height])
       .words(
-        this.chartText.map((d) => {
-          return { text: d };
+        this.sizByValue.map((d) => {
+          return { text: d.word, size: d.size };
         })
       )
-      .padding(10)
+      .padding(5)
+      .rotate(() => Math.random() * 2 * 90)
       .fontSize(60)
       .on("end", (e) => this.drawCloud(e));
 
