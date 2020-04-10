@@ -11,6 +11,7 @@ const moment = require("moment");
 })
 export class TranslationsComponent implements OnInit, AfterContentInit {
   darkTheme: boolean;
+  loading: boolean;
 
   svg: any;
   layout: any;
@@ -24,6 +25,7 @@ export class TranslationsComponent implements OnInit, AfterContentInit {
   constructor(private readonly api: ApiService) {}
 
   ngOnInit() {
+    this.loading = true;
     this.darkTheme = false;
     if (moment().get("hour") > 17 || moment().get("hour") < 6) {
       this.darkTheme = true;
@@ -76,6 +78,7 @@ export class TranslationsComponent implements OnInit, AfterContentInit {
   }
 
   d3Preparation() {
+    this.loading = false;
     // set the dimensions and margins of the graph
     let margin = { top: 10, right: 10, bottom: 10, left: 10 };
     const width = 450 - margin.left - margin.right;

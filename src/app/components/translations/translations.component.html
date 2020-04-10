@@ -6,6 +6,9 @@
       dContainer: darkTheme
     }"
   >
+    <div class="spinner-border text-info" role="status" *ngIf="loading">
+      <span class="sr-only">Loading...</span>
+    </div>
     <span id="my_dataviz" class="my_dataviz"></span>
   </div>
 </div>
