@@ -78,7 +78,7 @@ export class TranslationsComponent implements OnInit, AfterContentInit {
     this.loading = false;
     // set the dimensions and margins of the graph
     let margin = { top: 10, right: 10, bottom: 10, left: 10 };
-    const width = 450 - margin.left - margin.right;
+    const width = 400 - margin.left - margin.right;
     const height = 450 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
@@ -100,13 +100,14 @@ export class TranslationsComponent implements OnInit, AfterContentInit {
       )
       .padding(5)
       .rotate(() => Math.random() * 2 * 90)
-      .fontSize(60)
+      .fontSize((d) => d.size * 20)
       .on("end", (e) => this.drawCloud(e));
 
     this.layout.start();
   }
 
   drawCloud(words) {
+    // console.log(fill);
     this.svg
       .append("g")
       .attr(
@@ -122,6 +123,7 @@ export class TranslationsComponent implements OnInit, AfterContentInit {
       .enter()
       .append("text")
       .style("font-size", (d) => d.size + "px")
+      // .style("fill", `rgba(198, 45, 205, 0.8`)
       .attr("text-anchor", "middle")
       .attr(
         "transform",

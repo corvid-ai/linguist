@@ -1,27 +1,19 @@
-.container,
+.aContainer,
 .dContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
-  width: 100vw;
-  .my_dataviz {
-    margin-top: -10vh;
-  }
+  max-width: 100% !important;
 }
 
-.container {
+.aContainer {
   background-color: white !important;
 }
 .dContainer {
   background-color: black !important;
-
-  text {
-    fill: white !important;
-  }
 }
 
 .dMain {
   background-color: black !important;
-  height: 100vh;
 }
+

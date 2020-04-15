@@ -9,3 +9,8 @@
 .router-link-active {
   border-bottom: 1px solid red;
 }
+.my_dataviz {
+  svg {
+    max-width: 100% !important;
+  }
+}

@@ -9,7 +9,7 @@ const moment = require("moment");
 })
 export class NavbarComponent implements OnInit {
   darkTheme: boolean;
-  @Input() rowCount: number;
+  @Input() text: string;
   constructor(private readonly apiService: ApiService) {}
 
   ngOnInit(): void {
@@ -19,12 +19,12 @@ export class NavbarComponent implements OnInit {
     } else {
       this.darkTheme = false;
     }
-    this.getInfo();
+    // this.getInfo();
   }
 
-  getInfo() {
-    this.apiService.getInfo().subscribe(async (res: any) => {
-      this.rowCount = await res.message;
-    });
-  }
+  // getInfo() {
+  //   this.apiService.getInfo().subscribe(async (res: any) => {
+  //     this.rowCount = await res.message;
+  //   });
+  // }
 }

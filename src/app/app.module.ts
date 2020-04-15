@@ -5,6 +5,8 @@ import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { AuthModule } from "./components/auth/auth.module";
+import { DeskModule } from "./components/desk/desk.module";
 import { HomeComponent } from "./components/home/home.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { TranslationsComponent } from "./components/translations/translations.component";
@@ -23,6 +25,8 @@ import { TranslationsComponent } from "./components/translations/translations.co
     FormsModule,
     HttpClientModule,
     HttpClientModule,
+    AuthModule,
+    DeskModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,7 +1,7 @@
-import { ApiService } from "./../../services/api.service";
 import { Component, OnInit } from "@angular/core";
-const moment = require("moment");
+import { ApiService } from "./../../services/api.service";
 import { Data } from "./data.model";
+const moment = require("moment");
 // const keys = require("./keys.json");
 
 @Component({
@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   success: boolean;
   spinner: boolean;
 
-  rowCount: number;
+  navText: string = "Desk";
 
   constructor(private readonly api: ApiService) {
     this.data = new Data();
@@ -38,11 +38,11 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  getInfo() {
-    this.api.getInfo().subscribe(async (res: any) => {
-      this.rowCount = await res.message;
-    });
-  }
+  // getInfo() {
+  //   this.api.getInfo().subscribe(async (res: any) => {
+  //     this.rowCount = await res.message;
+  //   });
+  // }
 
   async submit(f) {
     this.spinner = true;
@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit {
         this.spinner = false;
         this.data = new Data();
 
-        this.getInfo();
+        // this.getInfo();
 
         setTimeout(() => {
           this.showMessage = false;
