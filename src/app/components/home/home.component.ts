@@ -1,4 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import {
+  Component,
+  ComponentFactoryResolver,
+  OnInit,
+  ViewChild,
+  ViewContainerRef
+} from "@angular/core";
 import { ApiService } from "./../../services/api.service";
 import { Data } from "./data.model";
 const moment = require("moment");
@@ -10,6 +16,7 @@ const moment = require("moment");
   styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit {
+  @ViewChild("cloud", { read: ViewContainerRef }) cloud: ViewContainerRef;
   localLanguage: string;
   english: string;
   darkTheme: boolean;
@@ -22,11 +29,16 @@ export class HomeComponent implements OnInit {
 
   navText: string = "Desk";
 
-  constructor(private readonly api: ApiService) {
+  constructor(
+    private readonly api: ApiService,
+    private factoryResorver: ComponentFactoryResolver
+  ) {
     this.data = new Data();
   }
 
   ngOnInit(): void {
+    this.loadComponents();
+
     this.spinner = false;
     this.showMessage = false;
 
@@ -38,11 +50,15 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  // getInfo() {
-  //   this.api.getInfo().subscribe(async (res: any) => {
-  //     this.rowCount = await res.message;
-  //   });
-  // }
+  async loadComponents() {
+    const { TranslationsComponent } = await import(
+      "../translations/translations.component"
+    );
+    const translationsFactory = this.factoryResorver.resolveComponentFactory(
+      TranslationsComponent
+    );
+    this.cloud.createComponent(translationsFactory);
+  }
 
   async submit(f) {
     this.spinner = true;

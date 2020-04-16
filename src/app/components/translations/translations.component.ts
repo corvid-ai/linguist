@@ -1,4 +1,5 @@
-import { AfterContentInit, Component, OnInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { AfterContentInit, Component, NgModule, OnInit } from "@angular/core";
 import * as d3 from "d3";
 import * as Layout from "d3-cloud";
 import { ApiService } from "./../../services/api.service";
@@ -137,3 +138,9 @@ export class DataStruc {
   name: string;
   count: number;
 }
+
+@NgModule({
+  declarations: [TranslationsComponent],
+  imports: [CommonModule],
+})
+class TranslationsModule {}

@@ -9,15 +9,9 @@ import { AuthModule } from "./components/auth/auth.module";
 import { DeskModule } from "./components/desk/desk.module";
 import { HomeComponent } from "./components/home/home.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
-import { TranslationsComponent } from "./components/translations/translations.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    NavbarComponent,
-    TranslationsComponent,
-  ],
+  declarations: [AppComponent, HomeComponent, NavbarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

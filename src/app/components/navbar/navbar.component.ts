@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ApiService } from "./../../services/api.service";
 const moment = require("moment");
 
@@ -9,7 +9,6 @@ const moment = require("moment");
 })
 export class NavbarComponent implements OnInit {
   darkTheme: boolean;
-  @Input() text: string;
   constructor(private readonly apiService: ApiService) {}
 
   ngOnInit(): void {
@@ -19,12 +18,5 @@ export class NavbarComponent implements OnInit {
     } else {
       this.darkTheme = false;
     }
-    // this.getInfo();
   }
-
-  // getInfo() {
-  //   this.apiService.getInfo().subscribe(async (res: any) => {
-  //     this.rowCount = await res.message;
-  //   });
-  // }
 }
