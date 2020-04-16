@@ -24,7 +24,6 @@ import { TranslationsComponent } from "./components/translations/translations.co
     RouterModule,
     FormsModule,
     HttpClientModule,
-    HttpClientModule,
     AuthModule,
     DeskModule,
   ],
