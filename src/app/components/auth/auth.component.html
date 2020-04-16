@@ -47,13 +47,13 @@
     </header>
     <main class="pf-c-login__main">
       <header class="pf-c-login__main-header">
-        <h1 class="pf-c-title pf-m-3xl">Log in to your account</h1>
+        <h1 class="pf-c-title pf-m-3xl">Log in to Linguist Desk</h1>
         <!-- <p class="pf-c-login__main-header-desc">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </p> -->
       </header>
       <div class="pf-c-login__main-body">
-        <form novalidate class="pf-c-form">
+        <form novalidate class="pf-c-form" (ngSubmit)="onSubmit()">
           <p class="pf-c-form__helper-text pf-m-error pf-m-hidden">
             <i
               class="fas fa-exclamation-circle pf-c-form__helper-text-icon"
@@ -62,7 +62,7 @@
             Invalid login credentials.
           </p>
           <div class="pf-c-form__group">
-            <label class="pf-c-form__label" for="login-demo-form-username">
+            <label class="pf-c-form__label" for="username">
               <span class="pf-c-form__label-text">Username</span>
               <span class="pf-c-form__label-required" aria-hidden="true"
                 >&#42;</span
@@ -73,13 +73,14 @@
               required
               input="true"
               type="text"
-              id="login-demo-form-username"
-              name="login-demo-form-username"
+              id="username"
+              [(ngModel)]="userModel.email"
+              name="username"
               placeholder="email or username"
             />
           </div>
           <div class="pf-c-form__group">
-            <label class="pf-c-form__label" for="login-demo-form-password">
+            <label class="pf-c-form__label" for="password">
               <span class="pf-c-form__label-text">Password</span>
               <span class="pf-c-form__label-required" aria-hidden="true"
                 >&#42;</span
@@ -90,8 +91,9 @@
               required
               input="true"
               type="password"
-              id="login-demo-form-password"
-              name="login-demo-form-password"
+              id="password"
+              [(ngModel)]="userModel.password"
+              name="password"
             />
           </div>
           <div class="pf-c-form__group pf-m-action">

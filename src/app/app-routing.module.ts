@@ -1,21 +1,22 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { DeskComponent } from "./components/desk/desk.component";
 import { HomeComponent } from "./components/home/home.component";
+import { GuardService } from "./services/guard.service";
 
 const routes: Routes = [
-  { path: "", component: HomeComponent },
-  {
-    path: "desk",
-    loadChildren: () =>
-      import("./components/desk/desk.module").then((m) => m.DeskModule),
-  },
+  { path: "welcome", component: HomeComponent },
   {
     path: "auth",
     loadChildren: () =>
       import("./components/auth/auth.module").then((m) => m.AuthModule),
   },
-  { path: "**", pathMatch: "full", redirectTo: "" },
+  {
+    path: "desk",
+    loadChildren: () =>
+      import("./components/desk/desk.module").then((m) => m.DeskModule),
+    canActivate: [GuardService],
+  },
+  { path: "**", pathMatch: "full", redirectTo: "welcome" },
 ];
 
 @NgModule({
