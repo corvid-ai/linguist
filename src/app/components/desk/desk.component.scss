@@ -1,12 +1,33 @@
-p {
+.container.pf-c-card {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  align-content: center;
-
-  height: 100vh;
   width: 100vw;
-  font-size: 2em;
+  margin: auto;
+  text-align: justify;
+  margin-top: 2em;
+}
+
+.pf-c-card {
+  --pf-c-card--m-selectable--m-selected--before--BackgroundColor: black !important;
+}
+.content {
+  margin-top: 3em;
+}
+
+thead {
+  th {
+    text-align: center;
+  }
+}
+.pf-c-form.pf-m-horizontal .pf-c-form__group {
+  grid-template-columns: auto;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+  tbody {
+    .twi {
+      display: block;
+    }
+  }
 }

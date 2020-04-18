@@ -1,1 +1,61 @@
-<p>Desk Version Coming Soon!</p>
+<div class="main">
+  <app-navbar [user]="user"></app-navbar>
+  <div class="container pf-c-card pf-m-selectable pf-m-selected">
+    <p class="pf-c-card__body">
+      This is the Desk Version of Linguist <br />
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum quas
+      consectetur corrupti eum nemo eligendi nam beatae accusantium, et aut
+      repudiandae neque alias dolorem magni vel molestias rerum quae dolore?
+    </p>
+  </div>
+
+  <div class="container content">
+    <table
+      class="pf-c-table pf-m-grid-lg"
+      role="grid"
+      aria-label="The words on the left have been sugested, translate on the right"
+      id="table-basic"
+    >
+      <thead>
+        <tr role="row">
+          <th role="columnheader" scope="col">English: </th>
+          <th role="columnheader" scope="col">Twi</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody role="rowgroup">
+        <tr role="row">
+          <td role="cell" data-label="English" class="pf-m-width-80" style="display: inline-block;">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quod,
+            saepe placeat deleniti ad, natus fugit quo, beatae consectetur
+            reiciendis sunt quam unde. Totam deserunt repudiandae sed veniam
+            facere corporis.
+          </td>
+          <td role="cell" data-label="Twi" class="pf-m-width-100 twi">
+            <form novalidate class="pf-c-form pf-m-horizontal">
+              <div class="pf-c-form__group">
+                <div class="pf-c-form__horizontal-group">
+                  <textarea
+                    class="pf-c-form-control"
+                    type="text"
+                    id="horizontal-align-labels-2-horizontal-form-name-2"
+                    name="horizontal-align-labels-2-horizontal-form-name-2"
+                    aria-label="textarea example" rows="4" cols="200"
+                    placeholder="Your Twi translation goes here"
+                  ></textarea>
+                </div>
+              </div>
+            </form>
+          </td>
+          <td data-label="Done" role="cell">
+            <input
+              type="checkbox"
+              name="table-expandable-check-all"
+              aria-label="Select all rows"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,4 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { Component, NgModule, OnInit, Input } from "@angular/core";
+import { RouterModule } from "@angular/router";
 import { ApiService } from "./../../services/api.service";
 const moment = require("moment");
 
@@ -9,6 +11,7 @@ const moment = require("moment");
 })
 export class NavbarComponent implements OnInit {
   darkTheme: boolean;
+  @Input("user") user: string;
   constructor(private readonly apiService: ApiService) {}
 
   ngOnInit(): void {
@@ -20,3 +23,10 @@ export class NavbarComponent implements OnInit {
     }
   }
 }
+
+@NgModule({
+  imports: [CommonModule, RouterModule],
+  declarations: [NavbarComponent],
+  exports: [NavbarComponent],
+})
+export class NavBarModule {}

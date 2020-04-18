@@ -10,8 +10,16 @@ export class StorageService {
     localStorage.setItem("token", JSON.stringify(token));
   }
 
+  setUser(email: string) {
+    localStorage.setItem("username", JSON.stringify(email));
+  }
+
   getStorage() {
     return localStorage.getItem("token");
+  }
+
+  getUser() {
+    return localStorage.getItem("username");
   }
 
   deleteToken() {

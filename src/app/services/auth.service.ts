@@ -13,6 +13,9 @@ export class AuthService {
 
   public isAuthenticated(): boolean {
     const token = this.storageService.getStorage();
+    const username = this.jwtHelper.decodeToken(token);
+    console.log(username.email)
+    this.storageService.setUser(username.email);
     return !this.jwtHelper.isTokenExpired(token);
   }
 }
