@@ -4,5 +4,7 @@
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
   .pf-c-brand {
     height: 4em !important;
+    background-color: white !important;
+    border: 2px solid white !important;
   }
 }
