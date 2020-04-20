@@ -11,7 +11,6 @@ export class GuardService {
   canActivate(): boolean {
     if (!this.auth.isAuthenticated()) {
       this.router.navigate(["auth"]);
-      console.log(this.auth.isAuthenticated());
       return false;
     }
     return true;

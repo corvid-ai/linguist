@@ -11,18 +11,9 @@
         values="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 1 0"
       ></feColorMatrix>
       <feComponentTransfer color-interpolation-filters="sRGB" result="duotone">
-        <feFuncR
-          type="table"
-          tableValues="0.1 0.9"
-        ></feFuncR>
-        <feFuncG
-          type="table"
-          tableValues="0.1 0.9"
-        ></feFuncG>
-        <feFuncB
-          type="table"
-          tableValues="0.1 0.9"
-        ></feFuncB>
+        <feFuncR type="table" tableValues="0.1 0.9"></feFuncR>
+        <feFuncG type="table" tableValues="0.1 0.9"></feFuncG>
+        <feFuncB type="table" tableValues="0.1 0.9"></feFuncB>
         <feFuncA type="table" tableValues="0 1"></feFuncA>
       </feComponentTransfer>
     </filter>
@@ -47,14 +38,14 @@
     </header>
     <main class="pf-c-login__main">
       <header class="pf-c-login__main-header">
-        <h1 class="pf-c-title pf-m-3xl">Log in to Linguist Desk</h1>
+        <h1 class="pf-c-title pf-m-3xl">{{ authStatus }} to Linguist Desk</h1>
         <!-- <p class="pf-c-login__main-header-desc">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </p> -->
       </header>
       <div class="pf-c-login__main-body">
         <form novalidate class="pf-c-form" (ngSubmit)="onSubmit()">
-          <p class="pf-c-form__helper-text pf-m-error pf-m-hidden">
+          <p class="pf-c-form__helper-text pf-m-error" *ngIf="errorMessage">
             <i
               class="fas fa-exclamation-circle pf-c-form__helper-text-icon"
               aria-hidden="true"
@@ -97,17 +88,26 @@
             />
           </div>
           <div class="pf-c-form__group pf-m-action">
-            <button class="pf-c-button pf-m-primary pf-m-block" type="submit">
-              Log in
+            <button
+              *ngIf="!loading"
+              class="pf-c-button pf-m-primary pf-m-block"
+              type="submit"
+            >
+              {{ authStatus }}
             </button>
+            <div *ngIf="loading" class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
           </div>
         </form>
       </div>
       <footer class="pf-c-login__main-footer">
         <div class="pf-c-login__main-footer-band">
           <p class="pf-c-login__main-footer-band-item">
-            Need an account?
-            <a>Sign up.</a>
+            {{ footerMessage }}
+            <a (click)="changeStatus($event)">{{
+              authStatus === "Log In" ? "Sign Up" : "Sign In"
+            }}</a>
           </p>
           <!-- <p class="pf-c-login__main-footer-band-item">
             <a href="#">Forgot username or password?</a>

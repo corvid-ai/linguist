@@ -108,7 +108,6 @@ export class TranslationsComponent implements OnInit, AfterContentInit {
   }
 
   drawCloud(words) {
-    // console.log(fill);
     this.svg
       .append("g")
       .attr(

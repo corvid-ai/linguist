@@ -6,7 +6,7 @@ import { Injectable } from "@angular/core";
 })
 export class ApiService {
   baseUrl = "https://linguist.herokuapp.com";
-  localUrl = "http://localhost:3000/auth";
+  // localUrl = "http://localhost:3000/auth";
 
   constructor(private http: HttpClient) {}
 
@@ -19,10 +19,10 @@ export class ApiService {
   }
 
   signUp(data) {
-    return this.http.post(`${this.localUrl}/signup`, data);
+    return this.http.post(`${this.baseUrl}/auth/signup`, data);
   }
 
   signIn(data) {
-    return this.http.post(`${this.localUrl}/signin`, data);
+    return this.http.post(`${this.baseUrl}/auth/signin`, data);
   }
 }

@@ -10,9 +10,13 @@ import { Auth } from "./auth.model";
   styleUrls: ["./auth.component.scss"],
 })
 export class AuthComponent implements OnInit {
+  authStatus: string;
+  footerMessage: string;
+  errorMessage: boolean;
+  loading: boolean;
+
   apiResponse: any;
   showError: boolean;
-  loading: any;
 
   userModel: Auth;
 
@@ -24,19 +28,57 @@ export class AuthComponent implements OnInit {
     this.userModel = new Auth();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.errorMessage = false;
+    this.footerMessage = "Need an account?";
+    this.authStatus = "Log In";
+  }
 
   onSubmit() {
+    this.authStatus === "Log In" ? this.signIn() : this.signUp();
+  }
+
+  signIn() {
+    this.errorMessage = false;
+    this.loading = true;
     this.apiService.signIn(this.userModel).subscribe(
       (res) => {
+        this.loading = false;
         this.apiResponse = res;
-        console.log(this.apiResponse);
         this.storageService.setStorage(this.apiResponse.accessToken);
         this.router.navigate(["desk"]);
       },
       (err) => {
-        console.log(err);
+        this.loading = false;
+        this.errorMessage = true;
       }
     );
+  }
+
+  signUp() {
+    this.errorMessage = false;
+    this.loading = true;
+    this.apiService.signUp(this.userModel).subscribe(
+      (res) => {
+        this.loading = false;
+        this.apiResponse = res;
+        this.signIn();
+      },
+      (err) => {
+        this.loading = false;
+        this.errorMessage = true;
+      }
+    );
+  }
+
+  changeStatus(e) {
+    this.errorMessage = false;
+    if (e.target.text == "Sign Up") {
+      this.footerMessage = "Already having an Account?";
+      this.authStatus = "Sign Up";
+    } else {
+      this.footerMessage = "Need an account?";
+      this.authStatus = "Log In";
+    }
   }
 }
